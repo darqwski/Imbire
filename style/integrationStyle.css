@@ -1,0 +1,62 @@
+#integrationInputMain{
+    padding:20px;
+}
+.integrationInput{
+    display:grid;
+    grid-template-columns: 2fr 3fr 2fr 3fr;
+    grid-column-gap: 25px;
+}
+#integrationInputFunctionView{
+    display:grid;
+    grid-template-columns: 3fr 9fr;
+}
+#integrationInputSizeView{
+    display:grid;
+    grid-template-columns: 3fr 1fr 8fr ;
+}
+.integrationOutputs{
+    display:grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto auto;
+    grid-column-gap: 25px;
+    padding:25px;
+}
+@media only screen and  (max-width: 1000px){
+
+    #integrationInputMain{
+
+    }
+    .integrationInput{
+        display:grid;
+        grid-template-columns: 1fr 3fr;
+        grid-column-gap: 5px;
+    }
+    #integrationOutputs{
+        display:grid;
+        grid-template-columns: auto;
+        word-wrap:break-word;
+
+    }
+    h5{
+        font-size: 45px;
+    }
+    span{
+        word-wrap:break-word;
+
+    }
+    .mjx-chtml{
+        font-size: 25px !important;
+
+    }
+    a[onclick="integrationCalculation()"]{
+        width: 100%;
+        font-size: 45px;
+        padding-top:10px;
+        height:70px;
+    }
+    #integrationTitle{
+        font-size: 45px;
+
+    }
+
+}

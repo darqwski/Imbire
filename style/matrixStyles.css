@@ -1,0 +1,55 @@
+.double-row{
+    display: grid;
+    grid-template-columns: 4fr 2fr;
+    grid-column-gap: 10px;
+}
+.double-row-LU{
+    display: grid;
+    grid-template-columns: 4fr 2fr 4fr 2fr;
+    grid-column-gap: 10px;
+}
+.first-row{
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    grid-column-gap: 20px;
+}
+.last-row{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+#matrixSize{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+}
+@media (max-width: 1000px){
+    #matrixSize {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+
+    }
+    .first-row{
+        display: grid;
+        grid-template-columns: auto;
+    }
+    a[onclick="matrixCalculate()"]{
+        width: 100%;
+        font-size: 45px;
+        padding-top:10px;
+        height:70px;
+    }
+    .matrix-size{
+        font-size: 45px;
+        height: 60px;
+        padding-top:10px;
+    }
+    .double-row{
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+    }
+    .last-row{
+        display: grid;
+        grid-template-columns: auto;
+    }
+    }

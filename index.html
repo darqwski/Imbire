@@ -1,83 +1,76 @@
 ﻿<!DOCTYPE>
 <html>
 <head>
-<link rel="stylesheet" href="main.css"/>
-    <title>IMBIRE 2.0</title>
+
+    <title>IMBIRE 3.0</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="style/css/materialize.min.css"  media="screen,projection"/>
+    <link id="iconRel" rel="icon" href="http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/256/Calculator-icon.png"/>
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+</script>
+    <link rel="stylesheet" href="gridLayout.css"/>
+    <link rel="stylesheet" href="colorStyle.css"/>
+    <link rel="stylesheet" href="style/matrixStyles.css"/>
+    <link rel="stylesheet" href="style/interpolationStyle.css"/>
+    <link rel="stylesheet" href="style/integrationStyle.css"/>
+    <link rel="stylesheet" href="style/calculatorStyle.css"/>
 </head>
 <body>
 
-<div id="top">
-<div id="titleDiv">
-    <h1>Imbire 2.0</h1>
-Zaawansowany kalkulator matematyczny</div>
-<div id="inputDiv"><div id="actionTypeDiv">f(x)=</div><input id="expressionInput" value="(-x^4+x^3-x^2-x)/((x-1)*(x+1))"><button id="expressionEvalButton" value="function">Oblicz</button></div>
+    <nav>
+        <div class="nav-wrapper blue-grey darken-4">
+            <ul id="mainNavigation" class="left tabs white-text blue-grey darken-4 valign-wrapper">
+                <li class="tab"><a onclick="changeView('interpolation')">Interpolacja</a></li>
+                <li class="tab"><a onclick="changeView('matrixes')">Macierze</a></li>
+                <li class="tab"><a onclick="changeView('calculator')">Kalkulator</a></li>
+                <li class="tab"><a onclick="changeView('integration')">Całkowanie</a></li>
+            </ul>
+            <a href="#!" class="brand-logo center hide-on-med-and-down">Projekt Metod Numerycznych</a>
 
-</div>
-<div id="leftSettingsDiv">Program przyjmuje niewiadome x,y,z oraz obsługuje funkcje:
-   <table id="addOperotorsTable">
-       <tr>
-           <td><button class="addOperotors" onclick="addOperator(this)">+</button></td>
-           <td><button class="addOperotors" onclick="addOperator(this)">sin</button></td>
-           <td><button class="addOperotors" onclick="addOperator(this)">asin</button></td>
-           <td><button class="addOperotors" onclick="addOperator(this)">sqrt(,)</button></td>
-       </tr><tr>
-           <td><button class="addOperotors" onclick="addOperator(this)">-</button></td>
-           <td><button class="addOperotors" onclick="addOperator(this)">cos</button></td>
-           <td><button class="addOperotors" onclick="addOperator(this)">acos</button></td>
-           <td><button class="addOperotors" onclick="addOperator(this)">log(,)</button></td>
-       </tr><tr>
-           <td><button class="addOperotors" onclick="addOperator(this)">*</button></td>
-           <td><button class="addOperotors" onclick="addOperator(this)">tg</button></td>
-           <td><button class="addOperotors" onclick="addOperator(this)">atg</button></td>
-           <td><button class="addOperotors" onclick="addOperator(this)">ln</button></td>
-       </tr><tr>
-           <td><button class="addOperotors" onclick="addOperator(this)">/</button></td>
-           <td><button class="addOperotors" onclick="addOperator(this)">ctg</button></td>
-           <td><button class="addOperotors" onclick="addOperator(this)">actg</button></td>
-           <td><button class="addOperotors" onclick="addOperator(this)">abs</button></td>
-       </tr><tr>
-           <td><button class="addOperotors" onclick="addOperator(this)">^</button></td>
-           <td><button class="addOperotors" onclick="addOperator(this)">!</button></td>
-           <td><button class="addOperotors" onclick="addOperator(this)">e</button></td>
-           <td><button class="addOperotors" onclick="addOperator(this)">π</button></td>
-       </tr>
-   </table>
-<br/>
-    Sterowanie wykresem funkcji
-<br/>
-    <table>
-        <tr>
-            <td><button class="graphNavigator">Przybliż</button></td>
-            <td><button class="graphNavigator">Góra</button></td>
-            <td><button class="graphNavigator">Oddal</button></td>
-        </tr>
-        <tr>
-            <td><button class="graphNavigator">Lewo</button></td>
-            <td><button class="graphNavigator">Wróć</button></td>
-            <td><button class="graphNavigator">Prawo</button></td>
-        </tr>
-        <tr>
-            <td><button class="graphNavigator">______</button></td>
-            <td><button class="graphNavigator">Dół</button></td>
-            <td><button class="graphNavigator">______</button></td>
-        </tr>
-    </table>
-    <div id="functionList">
-        <button onclick="findPoints()">Szukaj miejsca wspólnego</button>
+        </div>
+    </nav>
+    <div class="main-grid-container">
+
     </div>
-</div>
-<div id="summary">
-    <div id="boardDiv"></div>
-</div>
-<div id="rightSettingsDiv">
 
-</div>
 
+
+<tr>
+    <td colspan="2" ><button onclick='drawSpecial(1)' class="addOperotors" >Draw Communism!</button></td>
+    <td colspan="2"><button onclick='drawSpecial(2)' class="addOperotors" >Draw Heart!</button></td>
+</tr>
 
 
 
 </body>
+<components>
+    <div id="modalWrongPoints" class="modal">
+        <div class="modal-content">
+            <h4>Punkty nie zostały poprawnie wpisane</h4>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">OK</a>
+        </div>
+    </div>
+
+    <div id="modalRepeatPoints" class="modal">
+        <div class="modal-content">
+            <h4 id="modalRepeatPointsError">Próbujesz ponownie dodać punkt</h4>
+            <input type="hidden" id="modalNewPointI"/>
+            <input type="hidden" id="modalNewPointY"/>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat" onclick="modalChangePointY()">Zamień</a>
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Nie zmieniaj</a>
+        </div>
+    </div>
+
+</components>
 <script src="Scripts/Objects/expression.js"></script>
 <script src="Scripts/Objects/ShortExpression.js"></script>
 <script src="Scripts/predefineFunctions/reversePolishNotation.js"></script>
@@ -85,12 +78,30 @@ Zaawansowany kalkulator matematyczny</div>
 <script src="Scripts/predefineFunctions/drawGraph.js"></script>
 <script src="Scripts/pageOperators/buttonsListeners.js"></script>
 <script src="Scripts/pageOperators/Hidders.js"></script>
+<script src="Scripts/pageOperators/drawings.js"></script>
 <script src="Scripts/predefineFunctions/calculations.js"></script>
 <script src="Scripts/predefineFunctions/derivative.js"></script>
 <script src="Scripts/predefineFunctions/algebraicOperations.js"></script>
 <script src="Scripts/predefineFunctions/rowLimes.js"></script>
 <script src="Scripts/predefineFunctions/roots.js"></script>
 <script src="Scripts/predefineFunctions/prototypes.js"></script>
+<script src="Scripts/predefineFunctions/calculatorView.js"></script>
+
+<script src="Scripts/interpolation/interpolationView.js"></script>
+<script src="Scripts/interpolation/interpolationEvents.js"></script>
+<script src="Scripts/interpolation/interpolationCalculation.js"></script>
+
+<script src="Scripts/integration/integrationView.js"></script>
+<script src="Scripts/integration/integrationEvents.js"></script>
+<script src="Scripts/integration/integrationCalculation.js"></script>
+
+<script src="Scripts/matrix/matrixes.js"></script>
+<script src="Scripts/matrix/matrixView.js"></script>
+<script src="Scripts/matrix/matrixEvents.js"></script>
+<script src="Scripts/matrix/matrixLU.js"></script>
+<script src="Scripts/variables.js"></script>
+<script type="text/javascript" src="style/js/materialize.min.js"></script>
+
 
 <script src="Testing.js"></script>
 </html>

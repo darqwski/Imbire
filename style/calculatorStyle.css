@@ -1,0 +1,72 @@
+
+#addOperotorsTable{
+    margin: auto;
+}
+#graphNavigatorTable{
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-rows: auto auto auto;
+}
+#graphNavigatorTable >tr{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+#graphNavigatorTable *{
+    width: 100%;
+}
+#addOperotorsTable a{
+    width: 100%;
+}
+#expressionEvalButton{
+    width: 100%;
+}
+#inputDiv{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-row: auto auto;
+    grid-column-gap: 25px;
+    padding:15px;
+}
+#calculations{
+}
+canvas{
+    margin-left:auto;
+}
+.calculationCard{
+}
+.functionLabel {
+    width: 75%;
+    margin-bottom: 15px;
+
+}
+#functionList{
+    display: grid;
+    grid-template-columns: auto;
+    grid-column-gap: 25px;
+
+}
+#boardDiv{
+    display: grid;
+    grid-template-columns: 3fr 9fr;
+}
+
+@media (max-width: 1000px){
+
+    #inputDiv {
+        display: grid;
+        grid-template-columns: auto;
+    }
+    a[onclick="addOperator(this)"], #expressionEvalButton {
+        height: 80px;
+        font-size: 2em;
+        padding-top: 12px;
+    }
+   #expressionInput{
+       height: 5rem;
+       font-size: 2rem;
+    }
+
+
+
+}

@@ -1,13 +1,17 @@
 var precisionForAproximation=0.000001
 function giveRoots(expression) {
-    if (expression === undefined) return "Brak funkcji"
+    if (expression == "undefined") return "Brak funkcji"
+    if (expression == "Error") return "Brak funkcji"
+	console.log(expression)
     var temp = separateByPlusMinus(expression)
     for (var i = 0; i < temp.length; i++)
     {
        // if(getExpressionRank(temp[i])%1!=0)return "Miejsca zerowe funkcji pierwsiatkowej są niedopracowane"
     }
-for(var i=0;i<expression.length;i++)
-    if(checkFunction(expression.slice(i,expression.length))!="")return "Miejsca zerowe z funkcjami są jeszcze niedopracowane"
+for(var i=0;i<mathFunctions.length;i++)if(expression.includes(mathFunctions[i])){
+        console.log(mathFunctions[i])
+        return "Brak miejsc zerowych funkcji specjalnych"
+}
 
     if(expression.includes("^x")||expression.includes("^("))return "Miejsca zerowe funkcji wymiernej są jeszce nie dopracowane"
 
@@ -19,6 +23,7 @@ for(var i=0;i<expression.length;i++)
     var exprRank=getExpressionMaxRank(expression)
 
     console.log(saveExpression)
+    console.log(exprRank)
     if(exprRank==0)
     {
         return "Brak miejsc zerowych"
@@ -163,11 +168,15 @@ function findPoints()
     for(var i=0;i<tabs.length;i++)
         if(document.getElementsByClassName("functionDotter")[i].checked)
             lines.push(tabs[i].outerText)
+	 for(var i=0;i<lines.length;i++)if(lines[i].includes("for"))lines[i]=lines[i].split("for")[0].trim()
+    var TheLine=lines[0]+"-("+lines[1]+")"
+	console.log(TheLine)
+	var roots= giveRoots(RPNtoExpression(reversePolishNotation(TheLine)))
+	try{roots=roots.join().replace(/,/g,"</br>")}catch(e){roots="Brak punktów wspólnych"}
+	var calculationCard=document.createElement("div")
+    calculationCard.className="calculationCard"
+	calculationCard.innerHTML="<h1>Miejsca wspólne:</h1><h3>"+lines[0]+" oraz "+lines[1]+"</h3></hr>"+roots
+	$("#leftTop").prepend(calculationCard)
 
-    var TheLine=lines.pop()+"-("+lines.pop()+")"
-    console.log(TheLine)
-    console.log(reversePolishNotation(TheLine))
-    console.log(RPNtoExpression(reversePolishNotation(TheLine)))
-    console.log(giveRoots(RPNtoExpression(reversePolishNotation(TheLine))))
 
 }

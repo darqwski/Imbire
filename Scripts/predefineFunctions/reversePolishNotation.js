@@ -219,15 +219,23 @@ function separateExpressions(text)//Dzieli wyrazenie na znaki,liczby i niewiadom
             i+=pointerMove-1;
 
         }
-        else if(sign=="x"||sign=="y"||sign=="z"||sign=="n"||sign=="i"||sign=="e"||sign=="P")
+        else if(sign=="x"||sign=="y"||sign=="z"||sign=="n"||sign=="i"||sign=="e"||sign=="P"||sign=="m")
 		{
 			if(!isNaN(text[i-1]))shortWords.push("*")
-			if(sign!="P")shortWords.push(sign);
-			if(sign=="P")
+			if(sign!="P"&&sign!="m")shortWords.push(sign);
+			else if(sign=="P")
 			{
 				shortWords.push("PI")
 				i++;
 			}
+			else if(sign=="m")
+            {
+                console.log(text[i],text[i+1],text[i+2],text[i+3],text[i+4],text[i+5])
+                if(text[i+1]=="i"&&text[i+2]=="l"&&text[i+3]=="i"&&(text[i+4]=="o"||text[i+4]=="u")&&text[i+5]=="n") {
+                    shortWords.push(1000000)
+                    i += 5;
+                    }
+            }
 		}
    /*     else if(sign=="a"||sign=="b"||sign=="k"||sign=="s"||sign=="t"||sign=="u"||sign=="w"||sign=="p"||sign=="q"||sign=="r")
         {

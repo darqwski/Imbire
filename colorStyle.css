@@ -1,0 +1,54 @@
+body{
+    background-color: #DEDEDE;
+}
+.main-grid-container{
+
+}
+.top-main{
+
+}
+.bottom-main{
+
+}
+#addOperotorsTable{
+
+}
+#addOperotorsTable a{
+
+}
+#expressionEvalButton{
+
+}
+#inputDiv{
+
+    background-color: #FFFFFF;
+}
+#calculations{
+}
+canvas{
+
+}
+.calculationCard{
+    background-color: #FFFFFF;
+
+}
+#boarderDiv{
+    background-color: #FFFFFF;
+}
+#boardDiv{
+}
+.functionTab{
+}
+.calculationCardSection{
+    font-size:150%;
+    padding: 10px;
+}
+.tabs .tab a{
+    color: white !important;
+}
+.tabs .tab:hover{
+    transition: 300ms;
+}
+.indicator{
+    background-color: whitesmoke !important;
+}

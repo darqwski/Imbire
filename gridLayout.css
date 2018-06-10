@@ -1,0 +1,53 @@
+
+div{
+}
+.main-grid-container{
+
+	width: 85%;
+	margin:auto;
+	display:grid;
+	margin-top:30px;
+	grid-row-gap: 8px;
+}
+.top-main{
+	display:grid;
+	grid-template-columns: 4fr 8fr;
+	grid-column-gap: 12px;
+}
+.bottom-main{
+	display:grid;
+	grid-template-columns: 9fr 1fr 2fr;
+}
+#mainNavigation{
+	height: 100%;
+}
+@media (max-width: 1000px){
+	.main-grid-container{
+		width: 98%;
+        margin-left: 10px;
+        margin-right: 10px;
+        font-size: 34px;
+	}
+    nav ul a {
+
+		font-size: 45px;
+	}
+    nav{
+        height: 10%;
+    }
+    .card{
+        margin:5px !important;
+        padding-left: 15px;
+
+    }
+    input{
+        font-size: 34px !important;
+        height: fit-content;
+    }
+
+	.tabs .tab a{
+		font-size:2rem;
+	}
+
+
+}

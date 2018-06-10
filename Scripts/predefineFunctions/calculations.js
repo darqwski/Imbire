@@ -1,48 +1,50 @@
-function createCalculationCard(expression)
+function createCalculationCard(expression,domain)
 {
+	
     if(expression.includes("^0."))return    //chodzi o pierwiastki, ominąć
+	if(expression.includes("for"))
+	{
+		expression=expression.split("for")[0].trim();
+	console.log(expression)
+	}
     expression=commonDenominator(expression)
     var exprRPN=reversePolishNotation(expression)
-    console.log("RPN")
-    console.log(exprRPN)
     var shortedExpression=RPNtoExpression(reversePolishNotation(expression))
-    console.log("Shorted")
-    console.log(shortedExpression)
-    var derivative=giveDerivative(RPNtoExpression(reversePolishNotation(expression)))
-    console.log("Derivative")
-    console.log(derivative)
-    console.log("Ekstremum")
+    var derivative=giveDerivative(shortedExpression)
     var extremum=getExtremum(shortedExpression)
-    console.log(extremum)
-    console.log("Roots")
-        var roots=giveRoots(shortedExpression)
-    console.log(roots)
-    var calculationCard=document.createElement("div")
-    var limit=returnLimes(expression)
-    calculationCard.className="calculationCard"
-    var cardText="";
-    cardText+="<h1> Wyrażenie:</br> "+expression+"</h1>"
-    cardText+="</br><hr>"
-    cardText+="<h2>Odwrotna notacja Polska :</br>    "+exprRPN+"</h2>"
-    cardText+="</br></hr>"
-    cardText+="<h2>Wyrażenie po skróceniu :</br> "+shortedExpression+"</h2>"
-   cardText+="</br></hr>"
-   cardText+="<h2>Pochodna po x:</br> "+derivative+"</h2>"
-    cardText+="</br></hr>"
-   //cardText+="<h2>Granica w nieskonczonosci :</br> "+limit+"</h2>"
-   // cardText+="</br></hr>"
-    cardText+="<h2>Miejsca zerowe funkcji:  "+roots+"</h2>"
-    cardText+="</br></hr>"
-    cardText+="<h2>Ekstrema funkcji:  "+extremum+"</h2>"
-    calculationCard.innerHTML=cardText;
-    $("#boardDiv").append(calculationCard);
+
+ 	try{if(extremum.toString()!=extremum)extremum=extremum.join()}
+        catch(e){extremum="Brak punktów ekstremalnych"}
+ 	var roots=giveRoots(shortedExpression)
+    try{roots=roots.join()}catch(e){roots="Brak miejsc zerowych"}
+    var calculationCard=$("<div>",{class:"calculationCard card "})
+        calculationCard.append($("<h2>",{class:"header center-align"}).text(" Wyrażenie: $"+expression+"$")).append($("<hr>"))
+        calculationCard.append($("<div>",{class:"calculationCardSection"}).text("Odwrotna notacja Polska :    "+exprRPN))
+        calculationCard.append($("<div>",{class:"calculationCardSection"}).text("Wyrażenie po skróceniu : $"+shortedExpression+"$"))
+        calculationCard.append($("<div>",{class:"calculationCardSection"}).text("Pochodna po x:`"+derivative+"`"))
+        calculationCard.append($("<div>",{class:"calculationCardSection"}).text("Ekstrema funkcji: "+extremum))
+        calculationCard.append($("<div>",{class:"calculationCardSection"}).text("Miejsca zerowe funkcji: "+roots))
+
+    /*
+    if(domain!=null) {
+		var tempX,tempY;
+		if(domain.includes(",")) {
+		}
+		else {
+			tempX=domain;
+			tempY=RPNtoNumber(exprRPN.join(),domain)
+		}
+		cardText+="Dla wartosci "+tempX+" = "+tempY+" "
+	}*/
+
+
+    $("#calculations").prepend(calculationCard);
+    MathJax.Hub.Typeset()
 }
-function createCalculationForComplex(expression)
-{
+function createCalculationForComplex(expression) {
 
 }
-function compareRank(firstNumber, secondNumber)
-{
+function compareRank(firstNumber, secondNumber) {
 
     var firstRank,secondRank;
    firstRank=getExpressionRank(firstNumber)
@@ -51,7 +53,12 @@ function compareRank(firstNumber, secondNumber)
     return false
 }
 
-
+function refreshMathJax() {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://example.com/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+};
 
 
 

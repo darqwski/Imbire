@@ -428,10 +428,9 @@ function RPNtoExpression(expr)
             if (tempWord != "+" && tempWord != "-"&& tempWord != "~" && tempWord != "*" && tempWord != "/" && tempWord != "^" && tempWord != "log" && tempWord != "sqrt")//two arguments operation
                 Stack.push(secondNumber)
 
-            console.log((tempWord, firstNumber, secondNumber))
+           // console.log((tempWord, firstNumber, secondNumber))
             saveWord = evalForExpression(tempWord, firstNumber, secondNumber)
             Stack.push(saveWord)
-            console.log(Stack)
         }
     }
     if(saveWord===undefined)saveWord=firstNumber

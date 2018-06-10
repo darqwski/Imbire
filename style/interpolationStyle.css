@@ -1,0 +1,67 @@
+.interpolationInputPoints{
+    display: grid;
+    grid-template-columns:  1fr 2fr  1fr 2fr 4fr;
+    grid-column-gap: 25px;
+    padding:25px;
+}
+.interpolationPointsView{
+    display: grid;
+    grid-template-columns: 8fr 4fr;
+}
+#interpolationUlPoints{
+    display: grid;
+    grid-template-columns:auto auto auto auto !important;
+}
+.interpolationContent{
+    display: grid;
+    grid-template-columns:6fr 6fr;
+    grid-column-gap: 25px;
+    grid-row-gap: 25px;
+    word-break: normal;
+}
+.interpolationContent> * {
+    padding-left: 20px;
+}
+a[onclick="interpolationCalculations()"]{
+    width: 120%;
+    margin-left: 10%;
+    margin-bottom: 15px;
+}
+.interpolationTitle{
+
+}
+.mjx-chtml{
+    white-space: normal;
+}
+.card a{
+}
+#interpolationUlPoints >li{
+    background-color: lightslategray;
+    margin-right: 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+}
+@media (max-width: 1000px){
+    *{
+        word-wrap:break-word;
+    }
+    .interpolationInputPoints{
+        display: grid;
+        grid-template-columns:  1fr 5fr ;
+    }
+    .interpolationInputPoints>input{
+        margin-top:20px;
+    }
+    .card a{
+        grid-column-start: 1;
+        grid-column-end: 3;
+        height:80px;
+        padding-top:12px;
+        font-size: 1.2em;
+        margin-bottom: 15px;
+    }
+    #lagrangeView,#newtonView{
+        grid-template-columns:auto;
+    }
+
+}
