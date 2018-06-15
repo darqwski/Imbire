@@ -1,6 +1,6 @@
 .double-row{
     display: grid;
-    grid-template-columns: 4fr 2fr;
+    grid-template-columns: 4fr 2fr 4fr 2fr;
     grid-column-gap: 10px;
 }
 .double-row-LU{

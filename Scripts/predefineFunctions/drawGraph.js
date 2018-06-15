@@ -252,12 +252,10 @@ function clearCanvas(canvasScreen)
     c.fillRect(0,0,canvasWidth,canvasHeight)
 	c.fillStyle="#FFFFFF"
 }
-function refreshGraph() {
-    drawGraph(graph,canvasScreen)
-}
-function refreshGraph(a) {
-    drawGraph(graph,document.getElementsByTagName("canvas")[0])
-}
+    function refreshGraph()
+    {
+        drawGraph(graph,canvasScreen)
+    }
 function detectmob() {
     if( navigator.userAgent.match(/Android/i)
         || navigator.userAgent.match(/webOS/i)

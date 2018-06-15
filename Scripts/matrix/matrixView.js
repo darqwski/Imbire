@@ -128,7 +128,6 @@ function createMatrixView(){
 
             mainDiv.append($("<p>").text("Wyznacznik główny macierzy wynosi 0,`det(X)=0` niemożliwe jest wyliczenie macierzy"));
             $(".main-grid-container").append(mainDiv);
-            MathJax.Hub.Typeset();
             return mainDiv
         }
 
@@ -139,7 +138,6 @@ function createMatrixView(){
 
         mainDiv.append(headerMatrixes);
         for(var i=0;i<matrixes.length;i++){
-            console.log("TABLE "+i);
             var table=createTableFromArrayColorColumn(matrixes[i],getMatrixThead(matrixes[0].length,i-1),'grey lighten-2','grey darken-2',i-1);
             row.append(table);
             if(i!=0)row.append($("<div>",{class:"valign-wrapper"}).text("`det(x"+i+")="+dets[i-1]+"`"));
@@ -164,7 +162,6 @@ function createMatrixView(){
 
 
         $(".main-grid-container").append(mainDiv);
-        MathJax.Hub.Typeset()
 
     }catch (e) {
 
@@ -190,7 +187,7 @@ function createMatrixView(){
      headerResults=$("<h4>",{class:"card-title"}).text("Wyniki");
 
      mainDiv.append(headerLU);
-     firsRow.append(createTableFromArray(matrix, getMatrixThead(matrix[0].length,matrix[0].length-1))).append(descrtiptionDiv);
+     firsRow.append(createTableFromArray(matrix, getMatrixThead(matrix[0].length,matrix[0].length-1),"grey lighten-2")).append(descrtiptionDiv);
      mainDiv.append(firsRow);
 
      mainDiv.append(headerMatrixes);
@@ -214,7 +211,6 @@ function createMatrixView(){
      }
      mainDiv.append(lastRow);
      $(".main-grid-container").append(mainDiv);
-     MathJax.Hub.Typeset()
 
 
 
@@ -225,7 +221,7 @@ function createMatrixView(){
      var determinantDesc,transposeDesc,complexDesc,reverseDesc;
      determinantDesc="Wyznaczniki możemy obliczać dla macierzy kwadratowych dowolnego wymiaru. Mamy daną taką macierz:\n" +
          "Wyznacznik ten macierzy, metodą Laplace'a obliczamy za pomocą wzoru rekurencyjnego. Sprowadza się to do obliczania " +
-         "wyznaczników coraz niższych rzędów.\n"
+         "wyznaczników coraz niższych rzędów.\n</br>Wyznacznikiem tej macierzy jest `detA="+det+"`"
 
      transposeDesc="Macierz transponowana (przestawiona) macierzy `A`  to macierz`A^{T}` ," +
          " która powstaje z danej poprzez zamianę jej wierszy na kolumny i kolumn na wiersze." +
@@ -249,37 +245,87 @@ function createMatrixView(){
          "Macierz odwrotną do nieosobliwej macierzy`A` obliczamy następująco:\n" +
          "`A^{-1}=A^{D^{T}}/detA`"
 
-     row.append(createTableFromArray(matrix,getMatrixThead(matrix.length,matrix.length,"striped highlight")));
+     row.append(createTableFromArray(matrix,getMatrixThead(matrix.length,matrix.length,"striped highlight"),"grey lighten-2"));
      row.append($("<div>").text(determinantDesc));
         mainDiv.append($( "<h4>",{class:"center"}).text("Obliczanie wyznacznika macierzy"))
      mainDiv.append(row);
         mainDiv.append($("<hr>"))
 
      row=$("<div>",{class:"first-row"});
-     row.append(createTableFromArray(transp,getMatrixThead(matrix.length,matrix.length,"striped highlight")));
+     row.append(createTableFromArray(transp,getMatrixThead(matrix.length,matrix.length,"striped highlight"),"grey lighten-2"));
      row.append($("<div>").text(transposeDesc));
      mainDiv.append($( "<h4>",{class:"center"}).text("Obliczanie macierzy transponowanej"))
      mainDiv.append(row);
      mainDiv.append($("<hr>"))
 
      row=$("<div>",{class:"first-row"});
-     row.append(createTableFromArray(complement,getMatrixThead(matrix.length,matrix.length,"striped highlight")));
+     row.append(createTableFromArray(complement,getMatrixThead(matrix.length,matrix.length,"striped highlight"),"grey lighten-2"));
      row.append($("<div>").text(complexDesc));
      mainDiv.append($( "<h4>",{class:"center"}).text("Obliczanie macierzy dopełnień"))
      mainDiv.append(row);
      mainDiv.append($("<hr>"))
 
      row=$("<div>",{class:"first-row"});
-     row.append(createTableFromArray(inverse,getMatrixThead(matrix.length,matrix.length,"striped highlight")));
+     row.append(createTableFromArray(inverse,getMatrixThead(matrix.length,matrix.length,"striped highlight"),"grey lighten-2"));
      row.append($("<div>").text(reverseDesc));
      mainDiv.append($( "<h4>",{class:"center"}).text("Obliczanie macierzy odwrotnej"))
      mainDiv.append(row);
 
 
      $(".main-grid-container").append(mainDiv);
+MathJax.Hub.Typeset()
+
+
+ }
+ function createMatrixResultsGauss(matrixes,resultsCol){
+     var mainDiv=$("<div>",{class:matrixPanelClass});
+     var firsRow=$("<div>",{class:"first-row"});
+     var descrtiptionDiv=$("<div>").append("LALALA");
+     var row=$("<div>",{class:"double-row"});
+     var lastRow=$("<div>",{class:"last-row"});
+     var headerGauss,headerMatrixes,headerResults;
+
+     //<span class="card-title">Card Title</span>
+     headerGauss=$("<h4>",{class:"card-title"}).text("Metoda eliminacji Gaussa");
+     headerMatrixes=$("<h4>",{class:"card-title"}).text("Poszczególne Macierze");
+     headerResults=$("<h4>",{class:"card-title"}).text("Wyniki");
+     /*
+     First row is Matrix and description,
+      */
+     mainDiv.append(headerGauss);
+     mainDiv.append(firsRow);
+
+     /*
+            NExt rows containes matrixes and their determinants
+     */
+
+     mainDiv.append(headerMatrixes);
+     for(var i=0;i<matrixes.length;i++){
+         var table=createTableFromArrayColorColumn(matrixes[i],getMatrixThead(matrixes[0].length,3),"grey lighten-2");
+         row.append(table);
+         if(i!=0)row.append($("<div>",{class:"valign-wrapper"}))
+         else row.append($("<div>",{class:"valign-wrapper"}))
+         if(i%2==1){
+             mainDiv.append(row);
+             row=$("<div>",{class:"double-row"})
+         }
+     }
+     if(matrixes.length%2==1)mainDiv.append(row);
+     /*
+            Last row containst results
+      */
+     mainDiv.append(headerResults);
+
+     for(var i=0;i<resultsCol.length;i++){
+         var smallDiv=$("<div>").text("`x_"+(i+1)+"="+resultsCol[i]+"`")
+         lastRow.append(smallDiv)
+
+     }
+     mainDiv.append(lastRow);
+
+
+     $(".main-grid-container").append(mainDiv);
      MathJax.Hub.Typeset()
-
-
 
  }
 
@@ -289,7 +335,6 @@ function createMatrixView(){
         if(i!=number)ret.push("x"+(i+1));
         else ret.push("y")
     }
-    console.log(ret);
     return ret
  }
 

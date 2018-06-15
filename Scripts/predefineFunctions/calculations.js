@@ -24,6 +24,7 @@ function createCalculationCard(expression,domain)
         calculationCard.append($("<div>",{class:"calculationCardSection"}).text("Pochodna po x:`"+derivative+"`"))
         calculationCard.append($("<div>",{class:"calculationCardSection"}).text("Ekstrema funkcji: "+extremum))
         calculationCard.append($("<div>",{class:"calculationCardSection"}).text("Miejsca zerowe funkcji: "+roots))
+        calculationCard.append($("<div>",{class:"calculationCardSection"}).text("Prawdopodobne błędy mogą wynosić: "+Number.EPSILON))
 
     /*
     if(domain!=null) {

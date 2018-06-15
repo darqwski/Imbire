@@ -1,5 +1,5 @@
 function createCalculatorView(){
-
+    graph=[]
     var inputDiv=$("<div>",{id:"inputDiv"});
         var inputInput=$("<input>",{id:"expressionInput",placeholder:"x^3-2x^2+1 for (-1,2)",type:"search",class:"white"})
         var inputCalculate=$("<a>",{id:"expressionEvalButton",class:"waves-effect waves-light btn"}).text("Oblicz")

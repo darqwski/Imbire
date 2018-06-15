@@ -10,7 +10,7 @@
 }
 #interpolationUlPoints{
     display: grid;
-    grid-template-columns:auto auto auto auto !important;
+    grid-template-columns:auto auto auto auto auto auto auto auto !important;
 }
 .interpolationContent{
     display: grid;

@@ -21,7 +21,7 @@ function interpolationRefreshPoints(){
 
     $("#interpolationUlPoints").empty();
     for(var j=0;j<pointsX.length;j++){
-        $("#interpolationUlPoints").append($("<li>")
+        $("#interpolationUlPoints").append($("<li>",{class:"purple darken-2 white-text"})
             .append("`x_"+j+"=["+pointsX[j]+","+pointsY[j]+"]`")
             .append($("<i>",{class:"material-icons",onclick:"interpolationDeletePoint(this.parentNode)"}).text("close"))
 
@@ -38,7 +38,7 @@ function interpolationDeletePoint(li) {
             var deleted=0;
         for(var j=0;j<pointsY.length;j++){
             if(j!=i){
-                $("#interpolationUlPoints").append($("<li>")
+                $("#interpolationUlPoints").append($("<li>",{class:"purple darken-2 white-text"})
                     .append("`x_"+j+"=["+pointsX[j+deleted]+","+pointsY[j+deleted]+"]`")
                     .append($("<i>",{class:"material-icons",onclick:"interpolationDeletePoint(this.parentNode)"}).text("close"))
 

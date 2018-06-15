@@ -1,18 +1,22 @@
 function createIntegrationInput(){
     var main=$("<div>",{class:"card white",id:"integrationInputMain"});
     var inputData=$("<div>",{class:"integrationInput"})
-    var inputFunction=$("<div>",{id:"integrationInputFunctionView"}).append("Podaj wzór funckji: ")
+    var inputExample=$("<div>").text("`int_a^bf(x)dx`")
+    var inputFunction=$("<div>",{id:"integrationInputFunctionView"})
+        .append($("<div>"))
+        .append(inputExample)
+        .append("Podaj wzór funckji[f(x)]: ")
         .append($("<input>",{id:"integrationInputFunction",value:"x^3-2x+1"}))
 
     inputData
-        .append($("<p>").append("Podaj zakres dolny: "))
+        .append($("<p>").append("Podaj zakres dolny[a]: "))
         .append($("<input>",{id:"integrationInputBottom",type:"number",value:0}))
-        .append($("<p>").append("Podaj zakres górny: "))
+        .append($("<p>").append("Podaj zakres górny[b]: "))
         .append($("<input>",{id:"integrationInputTop",type:"number",value:2}))
 
 
 
-    var inputSize=$("<div>",{id:"integrationInputSizeView"}).append("Podaj rozmiar podstawy dolnej: ")
+    var inputSize=$("<div>",{id:"integrationInputSizeView"}).append("Podaj rozmiar podstawy dolnej[dx]: ")
         .append($("<div>",{id:"integrationInputSizeValue"}).text(0.1))
             .append($("<p>",{class:"range-field"})
                 .append($("<input>",{id:"integrationInputSize",type:"range",value:1,min:0,max:10,onclick:"changeInputSizeValue()"
@@ -26,6 +30,8 @@ function createIntegrationInput(){
     $(".main-grid-container").empty()
     $(".main-grid-container").append(createTitleCard("Całkowanie numeryczne"))
     $(".main-grid-container").append(main)
+    MathJax.Hub.Typeset()
+
 
 }
 function createIntegrationOutput(func,down,top,size,data){

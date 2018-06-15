@@ -12,7 +12,7 @@ function matrixCalculate() {
 
         cramerMatrix(matrix)
         LUMatrix(matrix)
-
+        gaussElimination(matrix)
     }
 
     /*
@@ -31,7 +31,7 @@ function getMatrix() {
     for(var i=0;i<tr.length;i++){
         matrix[i]=[]
         for(var j=0;j<inputs.length/tr.length;j++){
-            matrix[i].push(inputs[(inputs.length/tr.length)*i+j].value)
+            matrix[i].push(parseFloat(inputs[(inputs.length/tr.length)*i+j].value))
         }
     }
     return matrix;
@@ -160,20 +160,89 @@ function cramerMatrix(matrix){
 
     }
 
-
-
     /*
     CREATING CALCULATION CARD in matrixView.js
      */
     createMatrixResultsCramer(matrix,workMatrix,resultsCol,matrixes,mainDet,dets);
 }
+
 function squareMatrix(matrix) {
     createMatrixResultsSquare(matrix,transposeTable(matrix),determineMatrix(matrix),getComplement(matrix),inverseMatrix(matrix))
-
-
 }
 
 
+function gaussElimination(matrix)
+{
+
+    var numEquations=matrix.length
+    var results=[]
+    var allMatrixes=[]
+    allMatrixes.push(JSON.parse(JSON.stringify(matrix)))
+    for(var i = 0 ; i < numEquations ; ++i)
+    {
+        var maxElement = Math.abs(matrix[i][i]);
+        var maxRow = i;
+        for(var j = i + 1 ; j < numEquations ; ++j)
+        {
+            if( Math.abs(matrix[j][i]) > maxElement)
+            {
+                maxElement =  Math.abs(matrix[j][i]);
+                maxRow = j;
+            }
+        }
+
+        for(var j = i ; j < numEquations + 1 ; ++j)
+        {
+            var temp = matrix[maxRow][j];
+            matrix[maxRow][j] = matrix[i][j];
+            matrix[i][j] = temp;
+        }
+
+        for(var j = i + 1 ; j < numEquations; ++j)
+        {
+            var multiplier = -matrix[j][i] / matrix[i][i];
+
+            for(var k = i ; k < numEquations + 1 ; ++k)
+            {
+                if (i == k)
+                {
+                    matrix[j][k] = 0;
+                }
+
+                else
+                {
+                    matrix[j][k] += multiplier * matrix[i][k];
+                }
+            }
+        }
+        allMatrixes.push(JSON.parse(JSON.stringify(matrix)))
+
+    }
+    for(var i = numEquations - 1 ; i >= 0 ; --i)
+    {
+        results[i] = matrix[i][numEquations] / matrix[i][i];
+        for(var k = i - 1 ; k >= 0 ; --k)
+        {
+            matrix[k][numEquations] -= matrix[k][i] * results[i];
+        }
+    }
+
+
+
+
+    createMatrixResultsGauss(allMatrixes,results);
+}
+/**
+ * for k=1:n    %pêtla po krokach
+ m=Ab(k,k)
+ Ab(k,:)=Ab(k,:)/m  ;    %modyikacja k-tego wiersza
+ for i=1:n
+ if i~=k
+ Ab(i,:)=Ab(i,:)-(Ab(i,k)/Ab(k,k))*Ab(k,:) ;%modyikacja wszystkich pozosta³ych wierszy
+ end
+ end
+ end
+ */
 
 
 

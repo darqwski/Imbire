@@ -6,6 +6,22 @@ document.getElementById("expressionEvalButton").onclick=function (ev) {
 
 	    mainExpression=document.getElementById("expressionInput").value;
 
+	    if(mainExpression=="LOVE"){
+	        drawSpecial(2)
+            refreshGraph()
+            return
+        }
+    if(mainExpression.includes("/0")){
+        drawSpecial(1)
+        refreshGraph()
+        return
+    }
+    if(mainExpression=="LOVE LENIN"){
+        drawSpecial(1)
+        drawSpecial(2)
+        refreshGraph()
+        return
+    }
            $("#functionList").append(createFunctionLabel(mainExpression,colors[graph.length]))
             document.getElementsByClassName("functionTab")[document.getElementsByClassName("functionTab").length-1].style.color=(document.getElementsByClassName("functionTab")[document.getElementsByClassName("functionTab").length-1].style.backgroundColor=="rgb(255, 255, 0)"||document.getElementsByClassName("functionTab")[document.getElementsByClassName("functionTab").length-1].style.backgroundColor=="rgb(255, 255, 255)")?"#000000":"#FFFFFF"
            graph.push(mainExpression)
@@ -127,14 +143,19 @@ function addGraphEvents(canvasScreen){
             graphStartY=ev.y
             graphIsClicked=true;
 
+
         }
 
         document.getElementsByTagName("canvas")[0].onmouseup=function (ev) {
             graphIsClicked=false;
+            refreshGraph()
+
         }
 
         document.getElementsByTagName("canvas")[0].onmousemove=function (ev) {
             if(graphIsClicked) {
+                refreshGraph()
+
                 var diffX=parseInt((graphStartX-ev.x)*graphXScale/30)
                 var diffY=parseInt((graphStartY-ev.y)*graphYScale/30)
                 if(diffX!=0){
@@ -218,7 +239,7 @@ function changeView(a)
 
 }
 setTimeout(function () {
-    changeView('interpolation')
+    changeView('matrixes')
 
 },300)
 $(document).ready(function(){
@@ -227,13 +248,12 @@ $(document).ready(function(){
 $(document).ready(function(){
     $('.modal').modal();
 });
-/*
+
 document.getElementsByTagName("div")[0].style.display="none";
 document.getElementsByTagName("div")[1].style.display="none";
 document.getElementById("top_10").style.display="none";
 document.getElementsByClassName("cumf_bt_form_wrapper")[0].style.display="none";
 document.getElementsByClassName("cbalink")[0].style.display="none";
-*/
 
 
 

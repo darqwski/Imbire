@@ -2,8 +2,12 @@ function interpolationCalculations(){
 
 
 
+    $("#lagrangeView").remove()
+    $("#newtonView").remove()
     var finalLagrange= createLagrangeView(interpolationLagrange())
     var finalNewton=  createNewtonView(interpolationNewton())
+
+    $("canvas").remove();
     $(".main-grid-container").append($("<div>",{id:"boarderDiv"}).append($("<canvas>",{width:canvasWidth,height:canvasHeight})))
     var data=[]
     colors=[]
